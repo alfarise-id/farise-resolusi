@@ -1,6 +1,6 @@
 FARISE RESOLUSI
-- Belajar Programming secara konsisten setiap hari
-- Membuat to-do-list website
-- Membuat website iklan produk barang/makanan
-- Membuat Produk berupa website akuntansi
-- Kolaborasi dengan para expert 
+Setiap Hari - Belajar Programming Web secara konsisten setiap hari
+Bulan Ke 1 - Mempelajari HTML, CSS, dan Javascript
+Bulan Ke 2 - Membuat Website To-Do-List
+Bulan Ke 3 - Mempelajari PHP dan mendalami Javascript sambil membuat suatu Web
+Bulan Ke 4 - Mendalami PHP
