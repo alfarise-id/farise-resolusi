@@ -12,8 +12,8 @@ body {
 
 .container {
     display: grid;
-    min-width: 800px;
-    min-height: 800px;
+    height: 100vh;
+    width: 100vw;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-content: center;
     gap: 1em;

@@ -2,44 +2,77 @@ html, body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #1F4E5F;
+    color: white;
+    font-family: sans-serif;
 }
 
-body{
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
+.container {
+    display: grid;
 }
 
-header{
-    color: rgb(0, 0, 0);
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
+header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    margin: 1em;
+    text-align: left;
+    border: 3px solid #95f0e4;
+    border-radius: 50px;
 }
 
-section{
+h2 {
+    padding-left: 40px;
+}
+
+nav {
+    text-align: right;
+    padding-right: 2em;
+    align-content: center;
+}
+
+nav ul {
+    display: inline-flex;
+    list-style-type: none;
+    padding: 0;
+    gap: 20px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+main {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    gap: 15px;
+    grid-template-areas:
+        "home home"
+        "home home"
+        "about project"
+        "about project"
+        "contact contact";
+}
+
+section {
+    border: 3px solid #95f0e4;
+    border-radius: 50px;
     padding: 20px;
     margin: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-nav li{
-    display: inline;
-    margin: 20px 20px 0 0;
+#home {
+    text-align: center;
 }
 
-h1{
-    margin-left: 20px;
-}
-
-a{
-    text-decoration: none;
-    color: #333;
-    transition: 0.2s;
-}
-
-a:hover{
-    color: #659274;
+button {
+    background-color: #95f0e4;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
 }
