@@ -5,6 +5,7 @@ html, body{
     background-color: #1F4E5F;
     color: white;
     font-family: sans-serif;
+    line-height: 1.5;
 }
 
 .container {
@@ -23,9 +24,11 @@ header {
 
 h2 {
     padding-left: 40px;
+    margin: 10px 0;
 }
 
 nav {
+    display: none;
     text-align: right;
     padding-right: 2em;
     align-content: center;
@@ -51,9 +54,7 @@ main {
     gap: 15px;
     grid-template-areas:
         "home home"
-        "home home"
-        "about project"
-        "about project"
+        "info info"
         "contact contact";
 }
 
@@ -75,4 +76,44 @@ button {
     padding: 10px 20px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.bg-white {
+    background-color: white;
+    color: black;
+    width: 100%;
+}
+
+#about h4 {
+    margin-bottom: 0;
+}
+
+#about ul {
+    list-style-type: square;
+    margin-top: 5px;
+    padding-left: 10px;    
+}
+
+#about ul li {
+    margin: 10px;
+}
+
+#project a{
+    color: rgb(0, 114, 9);
+    transition: 0.3s;
+}
+
+#project a:hover {
+    color: rgb(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+    .bg-white {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    nav {
+        display: block;
+    }
 }
