@@ -194,7 +194,7 @@ button {
         display: inline-flex;
         list-style-type: none;
         padding: 0;
-        gap: 30px;
+        gap: 10px;
     }
 
     .burger {

@@ -1,20 +1,93 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: sans-serif;
+}
+
 body {
-    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    place-items: center;
+    justify-self: center;
+    align-content: center;
+    align-self: start;
+    border: 1px solid #95f0e4;
+    width: 97%;
+    height: 52%;
+    margin-top: 15px;
+    position: sticky;
+    top: 15px;
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    justify-self: start;
+    padding-left: 20px;
+    font-size: 24px;
+}
+
+header nav {
+    padding-right: 5px;
+}
+
+
+header nav ul {
+    list-style: none;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 2%;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
 }
 
-.box {
-    background-color: aqua;
+header nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
 }
 
-.container {
+.back {
+    padding: 5px 20px;
+    border: 1px solid #95f0e4;
+    border-radius: 15px;
+}
+
+main {
     display: grid;
-    height: 100vh;
-    width: 100vw;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    justify-content: center;
-    gap: 1em;
+    place-items: center;
+    gap: 20px;
+}
+
+.item {
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.gambar {
+    border: 1px solid #95f0e4;
+    border-radius: 30px;
+}
+
+.item h4 {
+    margin: 5px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin: 20px 20px 15px 20px;
+    border: 1px solid #95f0e4;
+}
+
+footer p {
+    text-align: justify;
 }
