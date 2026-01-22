@@ -7,6 +7,7 @@ html, body{
     font-family: sans-serif;
     line-height: 1.5;
     scroll-behavior: smooth;
+    overscroll-behavior: none;
 }
 
 .container {
@@ -28,11 +29,20 @@ header {
 }
 
 .burger {
-    display: none;
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    justify-self: right;
     font-size: 40px;
     cursor: pointer;
-    padding-right: 20px;
+    margin-right: 20px;
     color: white;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
+.burger.active {
+    transform: rotate(90deg);
 }
 
 h2 {
@@ -42,21 +52,43 @@ h2 {
 
 nav {
     position: absolute;
-    display: block;
+    display: none;
     justify-self: end;
     background-color: #1F4E5F;
-    padding: 50px;
-    margin: -30px -15px 0 0;
+    margin: -20px -20px 0 0;
+    height: 105vh;
+    width: 100vw;
     overflow: hidden;
+    transition: transform 0.3s ease-in-out;
 }
 
-
+nav.active {
+    transform: translateX(0);
+    display: block;
+}
 
 nav ul {
     display: grid;
     list-style-type: none;
     padding: 0;
     gap: 20px;
+}
+
+nav li {
+    padding-left: 40px;
+}
+
+nav h3 {
+    border-bottom: 1px solid white;
+    padding-left: 10px;
+}
+
+body.no-scroll {
+    touch-action: none !important;
+    width: 100vw !important;
+    overflow: hidden !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
 }
 
 a {
@@ -141,6 +173,10 @@ button {
         grid-template-columns: 2fr 1fr;
     }
 
+    header h3 {
+        display: none;
+    }
+
     nav {
         background: none;
         display: block;
@@ -149,6 +185,9 @@ button {
         padding-right: 2em;
         align-content: center;
         margin: 0;
+        height: auto;
+        width: auto;
+        transform: translateX(0%);
     }
 
     nav ul {
