@@ -14,6 +14,8 @@ body {
 header {
     display: grid;
     grid-template-columns: 1fr auto;
+    grid-template-areas: 
+    "judul nav";
     place-items: center;
     justify-self: center;
     align-content: center;
@@ -53,6 +55,10 @@ header nav ul li a {
     font-weight: bold;
 }
 
+.button {
+    display: none;
+}
+
 .back {
     padding: 5px 20px;
     border: 1px solid #95f0e4;
@@ -90,4 +96,62 @@ footer {
 
 footer p {
     text-align: justify;
+}
+
+@media (max-width: 425px) {
+    body.active {
+        overflow: hidden;
+    }
+
+    header {
+        grid-template-areas: 
+        "judul burger";
+    }
+
+    header.active {
+        align-content: start;
+        height: 95vh;
+        grid-template-areas: 
+        "judul burger"
+        "nav nav";
+    }
+
+    header h1.active {
+        margin: 0;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .button {
+        display: block;
+        border: 0;
+        background: none;
+        margin-right: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .button h2 {
+        font-size: 35px;
+        margin: 0;
+    }
+
+    .button.active {
+        transform: rotate(90deg);        
+    }
+
+    nav.active {
+        display: block;
+        height: 50vh;
+        width: 50vw;
+        align-content: center;
+        font-size: 23px;
+        border-top: 1px solid#95f0e4;
+        padding: 0 20%;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
 }
