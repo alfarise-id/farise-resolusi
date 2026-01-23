@@ -110,7 +110,7 @@ footer p {
 
     header.active {
         align-content: start;
-        height: 95vh;
+        height: 90vh;
         grid-template-areas: 
         "judul burger"
         "nav nav";
