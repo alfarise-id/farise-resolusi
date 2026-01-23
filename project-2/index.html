@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Dompetku</title>
+</head>
+<body>
+    <div class="background">
+        <div class="bola"></div>
+    </div>
+    <header>
+        <h1>Dompetku</h1>
+        <nav>
+            <ul>
+                <li><a href="#form">Form</a></li>
+                <li><a href="#table">Table</a></li>
+                <li><a href="#about">About</a></li>
+                <li class="back"><a href="../index.html">Kembali</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="form">
+            <h2>Form</h2>
+            <form action="">
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description">
+
+                <label for="total">Amount</label>
+                <input type="number" name="total" id="total">
+
+                <label for="type">Transaction Type</label>
+                <select name="type" id="type">
+                    <option value="expense">Expense (Pengeluaran)</option>
+                    <option value="income">Income (Pemasukan)</option>
+                </select>
+
+                <button class="submit" type="submit">Save</button>
+            </form>
+        </section>
+        <section id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Nabung</td>
+                        <td>100000</td>
+                        <td>Income</td>
+                        <td>Delete</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <h2 id="about">About</h2>
+        <p>Project ini mengambil tema keuangan, 'Dompetku' hadir sebagai website
+            yang mencatat aset seperti cash atau debit. Dengan menerapkan javascript
+            dalam pencatatannya, 'Dompetku' akan menghasilkan informasi berupa tabel.
+            Designnya dibuat lebih modern, hal ini dilakukan untuk melatih skill CSS.
+            Perlu diingat, bahwa website ini hanya untuk pembelajaran pribadi semata.
+            Dan data yang diinput tidak akan diambil atau masuk ke database, karena 
+            hasil tabel merupakan manipulasi javascript dan akan hilang ketika web direfresh.
+        </p>
+    </footer>
+</body>
+</html>

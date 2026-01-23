@@ -1,0 +1,91 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: black;
+    color: aliceblue;
+    box-sizing: border-box;
+}
+
+/* HEADER */
+header, footer, #form, #table{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    background-color: rgba(80, 88, 95, 0.308);
+    backdrop-filter:blur(20px);
+    border-radius: 20px;
+    margin: 20px;
+}
+
+header h1 {
+    font-size: 25px;
+    margin: 10px 0;
+    margin-left: 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+nav .back {
+    border: 1px solid white;
+    background-color: rgba(19, 21, 22, 0.349);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+/* MAIN */
+main {
+    display: flex;
+    grid-template-columns: auto 1 fr;
+    place-items: center;
+    justify-content: center;
+}
+
+#form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    width: 40vw;
+}
+
+#form form {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+#table {
+    min-height: 40vh;
+    align-items: start;
+}
+
+/* FOOTER */
+footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    border-radius: 20px;
+    padding: 0 20px 10px 20px;
+}
+
+footer h2{
+    margin: 0;
+    margin-top: 20px;
+}
+
+footer p {
+    margin-top: 5px;
+    text-align: justify;
+}
