@@ -1,14 +1,18 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-position: center;
     color: aliceblue;
     box-sizing: border-box;
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
 }
 
 /* HEADER */
-header, footer, #form, #table{
+header, footer, section{
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
@@ -16,6 +20,11 @@ header, footer, #form, #table{
     backdrop-filter:blur(20px);
     border-radius: 20px;
     margin: 20px;
+}
+
+header {
+    position: sticky; /* Belum berhasil */
+    top: 30px;
 }
 
 header h1 {
@@ -47,28 +56,124 @@ nav .back {
 }
 
 /* MAIN */
+h2 {
+    color: rgb(255, 255, 255);
+}
+
 main {
     display: flex;
-    grid-template-columns: auto 1 fr;
     place-items: center;
     justify-content: center;
+}
+
+#saldo {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    width: 20vw;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+#saldo h2 {
+    margin: 20px 0 0 0;
+}
+
+#saldo h3 {
+    margin: 0;
+    margin-bottom: 10px;
 }
 
 #form {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
-    width: 40vw;
+    width: 20vw;
 }
 
 #form form {
     display: grid;
     grid-template-columns: auto;
+    padding: 20px;
+    padding-top: 0;
+}
+
+#form h2 {
+    margin-left: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    height: 20px;
+    border: none;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border-radius: 10px 0;
+}
+
+select {
+    height: 30px;
+    border-radius: 10px 0;
+    border: none;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+option {
+    background-color: black;
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    justify-self: center;
+    border-radius: 20px;
+    border: none;
+    background-color: rgba(19, 21, 22, 0.349);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 #table {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
     min-height: 40vh;
     align-items: start;
+    padding: 20px;
+}
+
+#table h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    justify-self: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.356);
+}
+
+thead {
+    background-color: rgba(19, 21, 22, 0.349);
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* FOOTER */
@@ -89,3 +194,4 @@ footer p {
     margin-top: 5px;
     text-align: justify;
 }
+
