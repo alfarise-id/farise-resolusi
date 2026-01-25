@@ -19,9 +19,11 @@ link.forEach(element => {
 const desc = document.getElementById('description');
 const amount = document.getElementById('total');
 const type = document.getElementById('type');
-const save = document.querySelector('form button');
+const form = document.querySelector('form');
 
-save.addEventListener(("click"), function () {
+form.addEventListener(("submit"), function (e) {
+    e.preventDefault();
+    
     var desc_v = desc.value;
     var amount_v = amount.value;
     var type_v = type.value;
