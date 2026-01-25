@@ -22,7 +22,8 @@
     </header>
     <main>
         <section id="saldo">
-            <h2>Saldo</h2>
+            <h2>Saldo </h2>
+            <h5 style="font-style: italic; font-weight: thin;">Just a sample</h5>
             <p>Rp. 100.000</p>
             <h3>Income: Rp.<span>150.000</span></h3>
             <h3>Expense: Rp.<span>50.000</span></h3>
@@ -50,36 +51,33 @@
             <table>
                 <thead>
                     <tr>
-                        <th>No</th>
                         <th>Description</th>
                         <th>Amount</th>
                         <th>Type</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Nabung</td>
-                        <td>100000</td>
-                        <td>Income</td>
-                        <td>Delete</td>
-                    </tr>
+                <tbody id="data-table">
                 </tbody>
             </table>
+
+            <template id="trans-row">
+                <tr>
+                    <td class="col-desc"></td>
+                    <td class="col-am"></td>
+                    <td class="col-type"></td>
+                    <td class="col-act"></td>
+                </tr>
+            </template>
         </section>
     </main>
     <footer>
         <h2 id="about">About</h2>
-        <p>Project ini mengambil tema keuangan, 'Dompetku' hadir sebagai website
-            yang mencatat aset seperti cash atau debit. Dengan menerapkan javascript
-            dalam pencatatannya, 'Dompetku' akan menghasilkan informasi berupa tabel.
-            Designnya dibuat lebih modern dan menarik. Foto dalam background diambil
-            dari situs Pexels.com yang diupload oleh Rostilav Uzunov.
-            Perlu diingat, bahwa website ini hanya untuk pembelajaran pribadi semata.
-            Dan data yang diinput tidak akan diambil atau masuk ke database, karena 
-            hasil tabel merupakan manipulasi javascript dan akan hilang ketika web direfresh.
+        <p>Dompetku: Pencatat Keuangan Modern
+            <br><br>ini adalah simulasi pencatatan aset (Cash/Debit) berbasis JavaScript dengan antarmuka modern. Proyek ini mendemonstrasikan manipulasi DOM untuk menyajikan data input ke dalam tabel interaktif.
+            <br><br>Disclaimer: Proyek ini untuk tujuan edukasi. Data tidak disimpan permanen (akan hilang saat refresh). Aset Gambar: Rostislav Uzunov @Pexels.
         </p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

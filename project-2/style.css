@@ -7,16 +7,15 @@ html, body {
     background-image: url("bg.jpg");
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     color: aliceblue;
     box-sizing: border-box;
-    scroll-behavior: smooth;
     overscroll-behavior: none;
 }
 
 body {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    border: 1px solid white;
 }
 
 /* HEADER */
@@ -24,7 +23,7 @@ header, footer, section{
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
-    background-color: rgba(80, 88, 95, 0.308);
+    background-color: rgba(42, 46, 49, 0.575);
     backdrop-filter:blur(20px);
     border-radius: 20px;
     margin: 20px;
@@ -36,10 +35,11 @@ header, footer, section{
 
 header {
     position: sticky;
-    top: 30px;
+    top: 20px;
     z-index: 10;
     width: 97%;
     margin-right: 20px;
+    align-items: start;
 }
 
 header h1 {
@@ -48,8 +48,13 @@ header h1 {
     margin-left: 20px;
 }
 
+h5 {
+    margin:0;
+}
+
 nav {
     width: auto;
+    align-self: center;
 }
 
 nav ul {
@@ -162,7 +167,7 @@ button {
 #table {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto 1fr;
     min-height: 40vh;
     align-items: start;
     padding: 20px;
@@ -225,22 +230,29 @@ footer p {
 
     header {
         grid-template-areas: 
-        "judul burger";
-        height: auto;
+        "judul burger"
+        "nav nav";
+        height: 50px;
         width: auto;
+        transition: all 0.3s ease-in-out;
     }
 
     header.active {
         align-content: start;
-        height: 90vh;
+        height: 80vh;
+        grid-template-rows: auto 1fr;
         grid-template-areas: 
         "judul burger"
         "nav nav";
     }
 
     .burger {
-        display: block;
-        font-size: 30px;
+        display: flex;
+        font-size: 25px;
+        width: auto;
+        align-items: center;
+        justify-self: end;
+        margin: 10px 20px 0 0;
         background: none;
         border: none;
         color: white;
@@ -249,16 +261,45 @@ footer p {
     }
 
     nav {
-        display: none;
+        display: flex;
         grid-area: nav;
         margin: 20px;
+        opacity: 0;
+        justify-content: center;
+        visibility: collapse;
+        transition: all 0.3s ease-in-out;
+    }
+
+    nav.active {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    nav ul {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        scale: 1.5;
     }
 
     main {
         display:grid;
         grid-template-columns: 1fr ;
-        grid-template-rows: auto 1fr 1fr;
-        width: 63vh;
+        grid-template-rows: auto 1fr auto;
+        width: 100vw;
+    }
+
+    #saldo {
+        width: 80vw;
+    }
+
+    #form {
+        width: 90vw;
     }
 
     #table {
