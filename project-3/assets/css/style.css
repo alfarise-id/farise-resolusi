@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
     overscroll-behavior: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: white;
+    height: 100vh;
+    width: 100%;
 }
 
 body {
@@ -19,7 +23,34 @@ aside {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     height: 100vh;
+    width: auto;
+    padding: 0 30px;
+    justify-items: center;
     background-color: #060014;
+    z-index: 2;
+}
+
+aside ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    width: 150px;
+    gap: 20px;
+}
+
+ul a {
+    text-decoration: none;
+    color: #d3d3d3;
+    padding: 5px 10px;
+    transition: all 0.2s;
+}
+
+ul a:hover, ul a.active {
+    color: #ffffff;
+    background-color: #6f00ff80;
+    border-radius: 15px;
+    margin-left: 7px;
 }
 
 main {
@@ -29,59 +60,124 @@ main {
 }
 
 #content {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 70vh;
-}
-
-#content img, #hero-content {
-    grid-row: 1;
-    grid-column: 1;
-}
-
-#content img {
-    object-fit: cover;
+    background:
+        linear-gradient(to right, rgba(10, 0, 42, 0.9), rgba(10, 0, 42, 0.4)),
+        url('../img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 50vh;
-    width: 80vw;
-    align-self: center;
+    width: 90%;
     justify-self: center;
+    align-content: center;
+    align-self: center;
     border-radius: 15px;
 }
 
-#hero-content {
-    padding-top: 10vw;    
-    margin-left: 10vw;
-    align-self: center;
-    justify-self: flex-start;
-    color: #0033a1;
+#content h1, button {
+    margin: 0 0 0 20px;
 }
 
-#hero-content h1 {
-    margin: 0;
-}
-
-#hero-content button {
-    background-color: #060014;
+#content button {
+    background-color: #3700ff;
     border: none;
-    padding: 8px;
+    padding: 10px 20px;
     margin-top: 10px;
     color: aliceblue;
     border-radius: 15px;
+    transition: all 0.2s;
+}
+
+#content button:hover {
+    scale: 1.1;
 }
 
 #sub-content {
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 20px;
     height: 30vh;
     margin: 0 20px;
     place-items: center;
 }
 
 .box {
-    background-color: #001da0;
+    background-color: #2b00a0;
+    backdrop-filter: blur(20px);
     align-self: flex-start;
-    width: 60%;
-    height: 60%;
+    align-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
     border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.144);
+    transition: all 0.3s;
+}
+
+.box:hover {
+    scale: 1.1;
+}
+
+.box h4 {
+    margin: 0;
+}
+
+i {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.burger {
+    display: none;
+    background: none;
+    border: none;
+    margin: 0;
+    color: #d3d3d3;
+    font-size: 40px;
+    height: fit-content;
+}
+
+@media (max-width: 425px) {
+    aside {
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto;
+        height: fit-content;
+        align-items: center;
+    }
+
+    aside h1 {
+        margin: 10px 0;
+        font-size: 25px;
+    }
+
+    .burger {
+        display: flex;
+        justify-self: end;
+        align-self: center;
+    }
+
+    nav {
+        display: none;
+    }
+
+    #content {
+        height: 180px;
+        align-content: end;
+        font-size: 14px;
+        margin: 20px 0;
+    }
+
+    #content button {
+        display: none;
+    }
+
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    main {
+        grid-template-rows: auto 1fr;
+    }
 }

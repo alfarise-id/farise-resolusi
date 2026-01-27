@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Dashboard</title>
 </head>
 <body>
@@ -12,30 +13,46 @@
             <h1>Farise</h1>    
         </header>
 
+        <button class="burger">&#8801</button>
+
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="modules/01-Fixed-Asset/index.html">Fixed Asset</a></li>
+                <li><a href="modules/02-Treasury/index.html">Treasury</a></li>
+                <li><a href="modules/03-Inventory/index.html">Inventory</a></li>
+                <li><a href="modules/04-Receivables/index.html">Receivables</a></li>
+                <li><a href="modules/05-Capital/index.html">Capital</a></li>
+                <li><a href="reports/">Reports</a></li>
+                <li><a href="about.html">About</a></li>
             </ul>
         </nav>
     </aside>
 
     <main>
         <section id="content">
-            <img src="assets/img/bg.jpg" alt="bg">
-            <div id="hero-content">
-                <h1>Dashboard</h1>
-                <button>About Us</button>
-            </div>
+            <h1>Dashboard</h1>
+            <button>About Us</button>
         </section>
 
         <section id="sub-content">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
+            <div class="box">
+                <i class="fa-solid fa-building"></i>
+                <h4>Fixed Asset</h4>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-coins"></i>
+                <h4>Treasury</h4>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <h4>Inventory</h4>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-file-invoice"></i>
+                <h4>Receivables</h4>
+            </div>
         </section>
     </main>
-
-    <footer></footer>
 </body>
 </html>
