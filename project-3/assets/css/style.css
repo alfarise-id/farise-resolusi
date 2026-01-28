@@ -141,14 +141,27 @@ i {
 @media (max-width: 425px) {
     body {
         grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    body.active {
+        overflow: hidden;
     }
 
     aside {
+        position: absolute;
         grid-template-columns: auto 1fr;
-        grid-template-rows: auto;
+        grid-template-rows: auto 0fr;
         height: fit-content;
-        align-items: center;
+        width: 100%;
+        padding: 0;
+        align-items: start;
+        overflow: hidden;
+        transition: all 0.5s ease-in-out;
+    }
+
+    aside.active {
+        grid-template-rows: auto 1fr;
     }
 
     aside h1 {
@@ -160,14 +173,29 @@ i {
         display: flex;
         justify-self: end;
         align-self: center;
+        margin-right: 20px;
     }
 
     nav {
-        display: none;
+        opacity: 0;
+        height: 0;
+        visibility: hidden;
+        transition: 0.8s ease-in-out;
+    }
+
+    nav.active {
+        opacity: 1;
+        height: 100vh;
+        visibility: visible;
+    }
+
+    nav li {
+        margin-left: 28px;
     }
 
     main {
         grid-template-rows: auto 1fr;
+        margin-top: 50px;
     }
 
     #content {
