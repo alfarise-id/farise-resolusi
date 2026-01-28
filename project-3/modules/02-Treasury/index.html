@@ -28,16 +28,31 @@
             </ul>
         </nav>
     </aside>
-    <main>
+    <main class="m-treasury">
         <h1>Treasury</h1>
-        <section id="input">
-            <form></form>
-        </section>
-        <section id="table">
+        <div class="container">
+            <div class="outer" style="grid-area: outer;">
+                <h2>Subjudul</h2>
+                <select id="switch">
+                    <option value="recon">Bank Reconciliation</option>
+                    <option value="p-flu">Petty Cash (Fluctuating)</option>
+                    <option value="p-imp">Petty Cash (Imprest)</option>
+                </select>
+            </div>
+
+            <section style="grid-area: balance;">
+                <h3>Balance</h3>
+            </section>
             
-        </section>
+            <section style="grid-area: input;">
+                <h3>Input</h3>
+            </section>
+
+            <section style="grid-area: table;">
+                <h3>Table</h3>
+            </section>
+        </div>
     </main>
     <script src="../../assets/js/main.js"></script>
-    <script src="asset-logic.js"></script>
 </body>
 </html>

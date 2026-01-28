@@ -59,6 +59,34 @@ main {
     grid-template-rows: 1fr auto;
 }
 
+/* FOR TREASURY */
+.m-treasury {
+    grid-template-rows: auto 1fr;
+}
+
+.m-treasury h1 {
+    margin-left: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+    "outer outer"
+    "balance table"
+    "input table";
+    gap: 20px;
+}
+
+.outer {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+}
+/* FOR TREASURY */
+
+
 #content {
     background:
         linear-gradient(to right, rgba(10, 0, 42, 0.9), rgba(10, 0, 42, 0.4)),

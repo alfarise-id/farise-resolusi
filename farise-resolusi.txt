@@ -1,6 +1,0 @@
-FARISE RESOLUSI
-Setiap Hari - Belajar Programming Web secara konsisten setiap hari
-Bulan Ke 1 - Mempelajari HTML, CSS, dan Javascript
-Bulan Ke 2 - Membuat Website To-Do-List
-Bulan Ke 3 - Mempelajari PHP dan mendalami Javascript sambil membuat suatu Web
-Bulan Ke 4 - Mendalami PHP
