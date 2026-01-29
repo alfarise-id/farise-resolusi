@@ -32,27 +32,63 @@
         <h1>Treasury</h1>
         <div class="container">
             <div class="outer" style="grid-area: outer;">
-                <h2>Subjudul</h2>
+                <h2>Petty Cash (Fluctuating)</h2>
                 <select id="switch">
-                    <option value="recon">Bank Reconciliation</option>
-                    <option value="p-flu">Petty Cash (Fluctuating)</option>
-                    <option value="p-imp">Petty Cash (Imprest)</option>
+                    <option value="recon"><h4>Bank Reconciliation</h4></option>
+                    <option value="p-flu" selected><h4>Petty Cash (Fluctuating)</h4></option>
+                    <option value="p-imp"><h4>Petty Cash (Imprest)</h4></option>
                 </select>
             </div>
 
-            <section style="grid-area: balance;">
+            <section class="balance" style="grid-area: balance;">
                 <h3>Balance</h3>
+                <h4 id="balance">Rp. 0,-</h4>
+                <h3>Expense</h3>
+                <h4 id="expense">Rp. 0,-</h4>
             </section>
             
-            <section style="grid-area: input;">
+            <section class="input" style="grid-area: input;">
                 <h3>Input</h3>
+                <form>
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date" required>
+
+                    <label for="desc">Description</label>
+                    <input type="text" id="desc" placeholder="Description" required>
+
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" placeholder="Rp. 0,-" required>
+
+                    <label for="type">Type</label>
+                    <select name="type" id="type">
+                        <option value="Expense">Expense</option>
+                        <option value="Reimburse">Reimburse</option>
+                    </select>
+
+                    <button type="submit">Save</button>
+                </form>
             </section>
 
-            <section style="grid-area: table;">
+            <section class="table" style="grid-area: table;">
                 <h3>Table</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Desc</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th id="del">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </section>
         </div>
     </main>
     <script src="../../assets/js/main.js"></script>
+    <script src="treasury.js"></script>
 </body>
 </html>
