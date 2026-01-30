@@ -6,7 +6,11 @@ const sect_input = document.querySelector('.input');
 const sect_table = document.querySelector('.table');
 const container = document.querySelector('.container');
 const form = document.querySelector('form');
-
+const rupiah = (x) => new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0
+}).format(Number(x));
 
 const createTD = (text) => {
     const td = document.createElement('td');
@@ -14,8 +18,8 @@ const createTD = (text) => {
     return td;
 }
 
-function renderTable() {
-    let data = JSON.parse(localStorage.getItem('p_fluk')) || [];
+function renderTable(modul = 'p_fluk') {
+    let data = JSON.parse(localStorage.getItem(modul)) || [];
 
     const tbody = document.querySelector('tbody');
     tbody.textContent="";
@@ -23,30 +27,29 @@ function renderTable() {
     data.forEach((item, i) => {
         const row = document.createElement('tr');
 
-        const rupiah = new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0
-        }).format(Number(item.amount));
-
         row.setAttribute('data-index', i);
 
         row.append(
             createTD(item.tgl),
             createTD(item.desc),
-            createTD(rupiah),
+            createTD(rupiah(item.amount)),
             createTD(item.type),
         );
 
         const tdHapus = document.createElement('td');
-        tdHapus.innerHTML = `<button class='btn-hapus'>Delete</button>`;
+        if (modul == 'p_recon') {
+            tdHapus.innerHTML = `<button class='btn-hapus'>Delete</button>
+            <button class='btn-edit>Edit</button>`;
+        } else {
+            tdHapus.innerHTML = `<button class='btn-hapus'>Delete</button>`;
+        };
         row.appendChild(tdHapus);
 
         tbody.appendChild(row);
     });
 }
 
-function del_data() {
+function del_data(modul = 'p_fluk') {
     const tbody = document.querySelector('tbody');
 
     tbody.addEventListener('click', (e) => {
@@ -56,17 +59,84 @@ function del_data() {
             const baris = e.target.closest('tr');
             const index = baris.getAttribute('data-index');
 
-            let data = JSON.parse(localStorage.getItem('p_fluk')) || [];
+            let data = JSON.parse(localStorage.getItem(modul)) || [];
 
             data.splice(index, 1);
 
-            localStorage.setItem('p_fluk', JSON.stringify(data));
+            localStorage.setItem(modul , JSON.stringify(data));
 
-            renderTable();
+            renderTable(modul);
+            balanceUpdate(modul);
         }
     })
 }
 
+const balanceUpdate = (modul = 'p_fluk') => {
+    let data = JSON.parse(localStorage.getItem(modul));
+
+    let totalReimburse = 0;
+    let totalExpense = 0;
+
+    data.forEach(item => {
+        if(item.type === 'Reimburse'){
+            totalReimburse = totalReimburse + item.amount;
+        } else {
+            totalExpense = totalExpense + item.amount;
+        }
+    });
+
+    document.querySelector('#balance').textContent = rupiah(totalReimburse - totalExpense);
+    document.querySelector('#expense').textContent = rupiah(totalExpense);
+}
+
+const reimburse = () => {
+    document.querySelector('#reimburse').addEventListener('click', () => {
+        let data = JSON.parse(localStorage.getItem('p_imp')) || [];
+        let totalReimburse = 0;
+        let totalExpense = 0;
+        let total = 0;
+
+        data.forEach(item => {
+            if(item.type == 'Reimburse'){
+                totalReimburse = totalReimburse + item.amount;
+            } else {
+                totalExpense = totalExpense + item.amount;
+            }
+        });
+        let balance = totalReimburse - totalExpense;
+
+        if(totalReimburse == 0) {
+            total = 2000000;
+        } else {
+            total = 2000000 - balance;
+        };
+
+        if (balance >=0 && balance < 2000000) {
+            let tanggal = new Date;
+            let form_tanggal = tanggal.toLocaleDateString('sv-SE', {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+            }).replaceAll('/', '-');
+
+            const data_baru = {
+                tgl: form_tanggal,
+                desc: 'Reimburse',
+                amount: total,
+                type: 'Reimburse'
+            }
+
+            data.push(data_baru);
+
+            localStorage.setItem('p_imp', JSON.stringify(data));
+            renderTable('p_imp');
+            balanceUpdate('p_imp');
+        } else {
+            return
+        }
+
+    })
+}
 
 form.addEventListener(('submit'), (e) => {
     e.preventDefault();
@@ -85,13 +155,12 @@ form.addEventListener(('submit'), (e) => {
 
     renderTable();
     del_data();
+    balanceUpdate();
     form.reset();
 });
 
 
-
-
-function renderFlu() {
+const renderFlu = () => {
     sect_balance.innerHTML = `
                 <h3>Balance</h3>
                 <h4 id="balance">Rp. 0,-</h4>
@@ -140,7 +209,7 @@ function renderFlu() {
     `;
 }
 
-function renderImp() {
+const renderImp = () => {
     sect_balance.innerHTML = `
                 <h3>Balance</h3>
                 <h4 id="balance">Rp. 0,-</h4>
@@ -190,7 +259,14 @@ function renderImp() {
     `;
 }
 
-function renderRecon() {
+const renderRecon = () => {
+    sect_balance.innerHTML = `
+                <h3>Account Balance</h3>
+                <h4 id="account_balance">Rp. 0,-</h4>
+                <h3>Bank Balance</h3>
+                <h4 id="bank_balance">Rp. 0,-</h4>
+    `;
+
     sect_input.innerHTML = `
                 <h3>Add Transaction</h3>
                 <form>
@@ -237,12 +313,12 @@ select_modul.addEventListener('change', () => {
 
     switch (sel_value) {
         case 'p-flu':
-            sect_balance.style.display = "block"; 
-            container.style['grid-template-areas'] = "'outer outer' 'balance table' 'input table";
             sub_judul.textContent = 'Petty Cash (Fluctuating)';
             renderFlu();
             renderTable();
-            var form = document.querySelector('form');
+            del_data();
+            balanceUpdate();
+            const form = document.querySelector('form');
             form.addEventListener(('submit'), (e) => {
                 e.preventDefault();
                 let data = JSON.parse(localStorage.getItem('p_fluk')) || [];
@@ -260,36 +336,69 @@ select_modul.addEventListener('change', () => {
 
                 renderTable();
                 del_data();
+                balanceUpdate();
                 form.reset();
             });
             break;
         case 'p-imp':
-            sect_balance.style.display = "block"; 
-            container.style['grid-template-areas'] = "'outer outer' 'balance table' 'input table";
             sub_judul.textContent = 'Petty Cash (Imprest)';
             renderImp();
+            reimburse();
+            renderTable('p_imp');
+            del_data('p_imp');
+            balanceUpdate('p_imp');
             const type = document.querySelector('#type');
             type.tabIndex = -1;
             type.style['pointer-events'] = "none";
-            var form = document.querySelector('form');
-            form.addEventListener(('submit'), (e) => {
+            const form_imp = document.querySelector('form');
+            form_imp.addEventListener(('submit'), (e) => {
                 e.preventDefault();
-                document.querySelector('#date').value = "";
-                document.querySelector('#desc').value = "";
-                document.querySelector('#amount').value = "";
+                let data = JSON.parse(localStorage.getItem('p_imp')) || [];
+
+                const data_baru = {
+                    tgl: document.querySelector('#date').value,
+                    desc: document.querySelector('#desc').value,
+                    amount: Number(document.querySelector('#amount').value),
+                    type: document.querySelector('#type').value
+                };
+
+                data.push(data_baru);
+
+                localStorage.setItem('p_imp', JSON.stringify(data));
+
+                renderTable('p_imp');
+                del_data('p_imp');
+                balanceUpdate('p_imp');
+                reimburse();
+                form_imp.reset();
             })
             break;
         default:
-            sect_balance.style.display = "none";
-            container.style['grid-template-areas'] = "'outer outer' 'input table'";
             sub_judul.textContent = 'Bank Reconciliation';
             renderRecon();
-            var form = document.querySelector('form');
-            form.addEventListener(('submit'), (e) => {
+            renderTable('p_recon');
+            del_data('p_recon');
+            // balanceUpdate('p_recon');
+            const form_recon = document.querySelector('form');
+            form_recon.addEventListener(('submit'), (e) => {
                 e.preventDefault();
-                document.querySelector('#date').value = "";
-                document.querySelector('#acc').value = "";
-                document.querySelector('#amount').value = "";
+                let data = JSON.parse(localStorage.getItem('p_recon')) || [];
+
+                const data_baru = {
+                    tgl: document.querySelector('#date').value,
+                    desc: document.querySelector('#acc').value,
+                    amount: Number(document.querySelector('#amount').value),
+                    type: document.querySelector('#type').value
+                };
+
+                data.push(data_baru);
+
+                localStorage.setItem('p_recon', JSON.stringify(data));
+
+                renderTable('p_recon');
+                del_data('p_recon');
+                // balanceUpdate('p_recon');
+                form_recon.reset();
             })
             break;
     }
@@ -298,4 +407,6 @@ select_modul.addEventListener('change', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     renderTable(); 
+    del_data();
+    balanceUpdate();
 });

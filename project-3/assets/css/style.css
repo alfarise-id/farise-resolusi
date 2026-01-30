@@ -132,7 +132,7 @@ main {
     height: fit-content;
 }
 
-.m-treasury .input input, .input select, .input button, .balance button {
+.m-treasury .input input, .input select, .input button, .balance button, button {
     border-radius: 15px;
     border: #d3d3d3;
     background-color: #150050;
@@ -161,6 +161,10 @@ table{
     border-collapse: collapse;
 }
 
+table td:last-child, td:first-child {
+    text-align: center;
+}
+
 table thead th {
     background-color: #150050;
 }
@@ -180,6 +184,13 @@ button {
 button:active {
     transform: scale(0.95);
     background-color: #270081;
+}
+
+.btn-hapus {
+    background-color: #8b0909;
+    min-height: fit-content;
+    margin: 0;
+    justify-self: center;
 }
 
 /* FOR TREASURY */
