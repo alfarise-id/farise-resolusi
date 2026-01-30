@@ -6,9 +6,89 @@ const sect_input = document.querySelector('.input');
 const sect_table = document.querySelector('.table');
 const container = document.querySelector('.container');
 const form = document.querySelector('form');
+
+
+const createTD = (text) => {
+    const td = document.createElement('td');
+    td.textContent= text;
+    return td;
+}
+
+function renderTable() {
+    let data = JSON.parse(localStorage.getItem('p_fluk')) || [];
+
+    const tbody = document.querySelector('tbody');
+    tbody.textContent="";
+
+    data.forEach((item, i) => {
+        const row = document.createElement('tr');
+
+        const rupiah = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+        }).format(Number(item.amount));
+
+        row.setAttribute('data-index', i);
+
+        row.append(
+            createTD(item.tgl),
+            createTD(item.desc),
+            createTD(rupiah),
+            createTD(item.type),
+        );
+
+        const tdHapus = document.createElement('td');
+        tdHapus.innerHTML = `<button class='btn-hapus'>Delete</button>`;
+        row.appendChild(tdHapus);
+
+        tbody.appendChild(row);
+    });
+}
+
+function del_data() {
+    const tbody = document.querySelector('tbody');
+
+    tbody.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-hapus')) {
+            if(!confirm("Delete?")) return;
+
+            const baris = e.target.closest('tr');
+            const index = baris.getAttribute('data-index');
+
+            let data = JSON.parse(localStorage.getItem('p_fluk')) || [];
+
+            data.splice(index, 1);
+
+            localStorage.setItem('p_fluk', JSON.stringify(data));
+
+            renderTable();
+        }
+    })
+}
+
+
 form.addEventListener(('submit'), (e) => {
     e.preventDefault();
-})
+    let data = JSON.parse(localStorage.getItem('p_fluk')) || [];
+
+    const data_baru = {
+        tgl: document.querySelector('#date').value,
+        desc: document.querySelector('#desc').value,
+        amount: Number(document.querySelector('#amount').value),
+        type: document.querySelector('#type').value
+    };
+
+    data.push(data_baru);
+
+    localStorage.setItem('p_fluk', JSON.stringify(data));
+
+    renderTable();
+    del_data();
+    form.reset();
+});
+
+
 
 
 function renderFlu() {
@@ -152,81 +232,6 @@ function renderRecon() {
     `;
 }
 
-function p_submit(x = '#desc') {
-    let localData = JSON.parse(localStorage.getItem('transaction_petty')) || [];
-
-    const newData = {
-        dateTrans: document.querySelector('#date').value,
-        desc: document.querySelector(x).value,
-        amount: document.querySelector('#amount').value,
-        type: document.querySelector('#type').value
-    }
-
-    localData.push(newData);
-    localStorage.setItem('transaction_petty', JSON.stringify(localData));
-}
-
-function renderTable(column = 'desc') {
-    const localData = JSON.parse(localStorage.getItem('transaction_petty')) || [];
-    const tbody = document.querySelector('tbody');
-
-    tbody.textContent = "";
-
-    localData.forEach((x,i) => {
-        const row = document.createElement('tr');
-
-        row.setAttribute('data_index', i)
-
-        const td_date = document.createElement('td');
-        td_date.textContent = x.dateTrans;
-
-        const td_desc = document.createElement('td');
-        td_desc.textContent = x.column;
-
-        const td_amount = document.createElement('td');
-        td_amount.textContent = x.amount;
-
-        const td_type = document.createElement('td');
-        td_type.textContent = x.type;
-
-        const td_act = document.createElement('td');
-        td_act.textContent = 'Delete';
-        td_act.classList.add('del');
-
-        row.appendChild(td_date);
-        row.appendChild(td_desc);
-        row.appendChild(td_amount);
-        row.appendChild(td_type);
-        row.appendChild(td_act);
-
-        tbody.appendChild(row);
-    });
-}
-
-function remove() {
-    const col_act = document.querySelector('.del');
-
-    col_act.addEventListener("click", (e) => {
-        const baris = e.target.closest('tr');
-        const index = baris.getAttribute('data-index');
-        
-        let localData = JSON.parse(localStorage.getItem('transaction_petty'));
-
-            localData.splice(index, 1); // Buang data di urutan tersebut
-            
-            localStorage.setItem('transaction_petty', JSON.stringify(localData));
-            
-            renderTable(); // Gambar ulang tabel
-
-    })
-}
-
-
-
-p_submit();
-renderTable();
-remove();
-
 select_modul.addEventListener('change', () => {
     const sel_value = select_modul.value;
 
@@ -236,16 +241,27 @@ select_modul.addEventListener('change', () => {
             container.style['grid-template-areas'] = "'outer outer' 'balance table' 'input table";
             sub_judul.textContent = 'Petty Cash (Fluctuating)';
             renderFlu();
+            renderTable();
             var form = document.querySelector('form');
             form.addEventListener(('submit'), (e) => {
                 e.preventDefault();
-                p_submit();
-                document.querySelector('#date').value = "";
-                document.querySelector('#desc').value = "";
-                document.querySelector('#amount').value = "";
-            })
-            renderTable();
-            remove();
+                let data = JSON.parse(localStorage.getItem('p_fluk')) || [];
+
+                const data_baru = {
+                    tgl: document.querySelector('#date').value,
+                    desc: document.querySelector('#desc').value,
+                    amount: Number(document.querySelector('#amount').value),
+                    type: document.querySelector('#type').value
+                };
+
+                data.push(data_baru);
+
+                localStorage.setItem('p_fluk', JSON.stringify(data));
+
+                renderTable();
+                del_data();
+                form.reset();
+            });
             break;
         case 'p-imp':
             sect_balance.style.display = "block"; 
@@ -258,13 +274,10 @@ select_modul.addEventListener('change', () => {
             var form = document.querySelector('form');
             form.addEventListener(('submit'), (e) => {
                 e.preventDefault();
-                p_submit();
                 document.querySelector('#date').value = "";
                 document.querySelector('#desc').value = "";
                 document.querySelector('#amount').value = "";
             })
-            renderTable();
-            remove();
             break;
         default:
             sect_balance.style.display = "none";
@@ -274,15 +287,15 @@ select_modul.addEventListener('change', () => {
             var form = document.querySelector('form');
             form.addEventListener(('submit'), (e) => {
                 e.preventDefault();
-                p_submit('#acc');
                 document.querySelector('#date').value = "";
                 document.querySelector('#acc').value = "";
                 document.querySelector('#amount').value = "";
             })
-            renderTable(acc);
-            remove();
             break;
     }
 })
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    renderTable(); 
+});

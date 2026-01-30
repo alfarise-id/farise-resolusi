@@ -3,6 +3,7 @@ const header = document.querySelector('header');
 const nav = document.querySelector('nav');
 const link = document.querySelectorAll('nav ul li a');
 
+
 burger.addEventListener("click", function () {
     header.classList.toggle('active');
     nav.classList.toggle('active');

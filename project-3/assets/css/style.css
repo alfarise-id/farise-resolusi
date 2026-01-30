@@ -173,6 +173,15 @@ tbody tr:nth-child(even) {
     background-color: #150050;
 }
 
+button {
+    transition: all 0.3s;
+}
+
+button:active {
+    transform: scale(0.95);
+    background-color: #270081;
+}
+
 /* FOR TREASURY */
 
 
