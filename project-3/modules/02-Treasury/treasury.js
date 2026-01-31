@@ -6,6 +6,11 @@ const sect_input = document.querySelector('.input');
 const sect_table = document.querySelector('.table');
 const container = document.querySelector('.container');
 const form = document.querySelector('form');
+const sect_edit = document.querySelector('.input.edit');
+const sect_bank = document.querySelector('.input.e-bank');
+
+
+
 const rupiah = (x) => new Intl.NumberFormat('id-ID', {
     style: 'currency',
     currency: 'IDR',
@@ -37,19 +42,24 @@ function renderTable(modul = 'p_fluk') {
         );
 
         const tdHapus = document.createElement('td');
-        if (modul == 'p_recon') {
-            tdHapus.innerHTML = `<button class='btn-hapus'>Delete</button>
-            <button class='btn-edit>Edit</button>`;
+        if (modul === 'p_recon') {
+            tdHapus.innerHTML = 
+            `<button class='btn-hapus'>Delete</button>
+            <button class='btn-edit'>Edit</button>
+            <button class='btn-check'>✔</button>`;
+            row.appendChild(tdHapus);
+            action_button('p_recon');
+            tbody.appendChild(row);
         } else {
             tdHapus.innerHTML = `<button class='btn-hapus'>Delete</button>`;
-        };
-        row.appendChild(tdHapus);
-
-        tbody.appendChild(row);
+            row.appendChild(tdHapus);
+            action_button(modul);
+            tbody.appendChild(row);
+        }
     });
 }
 
-function del_data(modul = 'p_fluk') {
+function action_button(modul = 'p_fluk') {
     const tbody = document.querySelector('tbody');
 
     tbody.addEventListener('click', (e) => {
@@ -67,6 +77,22 @@ function del_data(modul = 'p_fluk') {
 
             renderTable(modul);
             balanceUpdate(modul);
+        } else if (e.target.classList.contains('btn-edit')) {
+            const baris = e.target.closest('tr');
+            let indexEdit = baris.getAttribute('data-index');
+            let data = JSON.parse(localStorage.getItem(modul)) || [];
+
+            sect_input.style.display = "none";
+            sect_edit.style.display = "grid";
+            sect_edit.setAttribute('data-edit',indexEdit);
+
+            document.querySelector('#dateEd').value = new Date(data[indexEdit].tgl).toLocaleDateString('sv-SE');
+            document.querySelector('#accEd').value = data[indexEdit].desc;
+            document.querySelector('#amountEd').value = data[indexEdit].amount;
+            document.querySelector('#typeEd').value = data[indexEdit].type;
+
+        } else if (e.target.classList.contains('btn-check')){
+            e.target.style.backgroundColor ='green'; //NEED FIX
         }
     })
 }
@@ -77,16 +103,32 @@ const balanceUpdate = (modul = 'p_fluk') => {
     let totalReimburse = 0;
     let totalExpense = 0;
 
-    data.forEach(item => {
-        if(item.type === 'Reimburse'){
-            totalReimburse = totalReimburse + item.amount;
-        } else {
-            totalExpense = totalExpense + item.amount;
-        }
-    });
+    if (modul === 'p_fluk' || modul === 'p_imp') {
+        data.forEach(item => {
+            if(item.type === 'Reimburse'){
+                totalReimburse = totalReimburse + item.amount;
+            } else {
+                totalExpense = totalExpense + item.amount;
+            }
+        });
 
-    document.querySelector('#balance').textContent = rupiah(totalReimburse - totalExpense);
-    document.querySelector('#expense').textContent = rupiah(totalExpense);
+        document.querySelector('#balance').textContent = rupiah(totalReimburse - totalExpense);
+        document.querySelector('#expense').textContent = rupiah(totalExpense);
+    } else if (modul === 'p_recon') {
+        data.forEach(item => {
+            if(item.type === 'Debit'){
+                totalReimburse = totalReimburse + item.amount;
+            } else {
+                totalExpense = totalExpense + item.amount;
+            }
+        });
+
+        document.querySelector('#account_balance').textContent = rupiah(totalReimburse - totalExpense);
+
+        let dataBalance = localStorage.getItem("bank_balance") || "Rp. 0,-";
+
+        document.querySelector('#bank_balance').textContent = dataBalance;
+    }
 }
 
 const reimburse = () => {
@@ -97,7 +139,7 @@ const reimburse = () => {
         let total = 0;
 
         data.forEach(item => {
-            if(item.type == 'Reimburse'){
+            if(item.type === 'Reimburse'){
                 totalReimburse = totalReimburse + item.amount;
             } else {
                 totalExpense = totalExpense + item.amount;
@@ -154,7 +196,6 @@ form.addEventListener(('submit'), (e) => {
     localStorage.setItem('p_fluk', JSON.stringify(data));
 
     renderTable();
-    del_data();
     balanceUpdate();
     form.reset();
 });
@@ -265,6 +306,7 @@ const renderRecon = () => {
                 <h4 id="account_balance">Rp. 0,-</h4>
                 <h3>Bank Balance</h3>
                 <h4 id="bank_balance">Rp. 0,-</h4>
+                <button class='btn-editBalance'>Edit Bank Balance</button>
     `;
 
     sect_input.innerHTML = `
@@ -316,7 +358,6 @@ select_modul.addEventListener('change', () => {
             sub_judul.textContent = 'Petty Cash (Fluctuating)';
             renderFlu();
             renderTable();
-            del_data();
             balanceUpdate();
             const form = document.querySelector('form');
             form.addEventListener(('submit'), (e) => {
@@ -335,7 +376,6 @@ select_modul.addEventListener('change', () => {
                 localStorage.setItem('p_fluk', JSON.stringify(data));
 
                 renderTable();
-                del_data();
                 balanceUpdate();
                 form.reset();
             });
@@ -345,7 +385,6 @@ select_modul.addEventListener('change', () => {
             renderImp();
             reimburse();
             renderTable('p_imp');
-            del_data('p_imp');
             balanceUpdate('p_imp');
             const type = document.querySelector('#type');
             type.tabIndex = -1;
@@ -367,7 +406,6 @@ select_modul.addEventListener('change', () => {
                 localStorage.setItem('p_imp', JSON.stringify(data));
 
                 renderTable('p_imp');
-                del_data('p_imp');
                 balanceUpdate('p_imp');
                 reimburse();
                 form_imp.reset();
@@ -377,8 +415,7 @@ select_modul.addEventListener('change', () => {
             sub_judul.textContent = 'Bank Reconciliation';
             renderRecon();
             renderTable('p_recon');
-            del_data('p_recon');
-            // balanceUpdate('p_recon');
+            balanceUpdate('p_recon');
             const form_recon = document.querySelector('form');
             form_recon.addEventListener(('submit'), (e) => {
                 e.preventDefault();
@@ -396,9 +433,46 @@ select_modul.addEventListener('change', () => {
                 localStorage.setItem('p_recon', JSON.stringify(data));
 
                 renderTable('p_recon');
-                del_data('p_recon');
-                // balanceUpdate('p_recon');
+                balanceUpdate('p_recon');
                 form_recon.reset();
+            });
+            document.querySelector(".form-edit").addEventListener('submit', (e)=> {
+                e.preventDefault();
+                let data = JSON.parse(localStorage.getItem('p_recon')) || [];
+                let data_edit = sect_edit.getAttribute('data-edit');
+
+                let new_data = {
+                    tgl: document.querySelector('#dateEd').value,
+                    desc: document.querySelector('#accEd').value,
+                    amount: Number(document.querySelector('#amountEd').value),
+                    type: document.querySelector('#typeEd').value
+                }
+
+                data[data_edit] = new_data;
+
+                localStorage.setItem('p_recon', JSON.stringify(data));
+                renderTable('p_recon');
+                document.querySelector(".form-edit").reset();
+                balanceUpdate('p_recon');
+                sect_input.style.display = "grid";
+                sect_edit.style.display = "none";
+                alert('Edit Succes!');
+            });
+            document.querySelector(".btn-editBalance").addEventListener('click', () => {
+                sect_input.style.display = "none";
+                sect_bank.style.display = "grid";
+            });
+            document.querySelector(".form-edit-bank").addEventListener("submit", (e)=> {
+                e.preventDefault();
+                let data = localStorage.getItem('bank_balance') || "";
+                data = rupiah(document.querySelector('#amountEbank').value);
+
+                document.querySelector('#bank_balance').textContent = data;
+
+                localStorage.setItem("bank_balance", data);
+                sect_input.style.display = "grid";
+                sect_bank.style.display = "none";
+                document.querySelector(".form-edit-bank").reset();
             })
             break;
     }
@@ -407,6 +481,5 @@ select_modul.addEventListener('change', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     renderTable(); 
-    del_data();
     balanceUpdate();
 });

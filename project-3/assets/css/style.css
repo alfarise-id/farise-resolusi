@@ -186,14 +186,45 @@ button:active {
     background-color: #270081;
 }
 
-.btn-hapus {
-    background-color: #8b0909;
+.btn-hapus,.btn-edit, .btn-check, .balance .btn-editBalance {
     min-height: fit-content;
     margin: 0;
     justify-self: center;
 }
 
+.balance .btn-editBalance {
+    padding: 10px;
+}
+
+.btn-hapus {
+    background-color: red;
+}
+
+.btn-check.btn-green {
+    background-color: green;
+}
 /* FOR TREASURY */
+
+/* FOR TREASURY : EDIT */
+
+.input.edit {
+    display: none;
+    background-color: blue;
+}
+
+.input.e-bank {
+    display: none;
+    background-color: #c300ff;
+}
+
+.input.e-bank input {
+    background-color: #4b005e;
+}
+
+.input.e-bank button {
+    background-color: #a800ca;
+}
+/* FOR TREASURY : EDIT */
 
 
 #content {
