@@ -393,7 +393,7 @@ i {
 
     .m-treasury div {
         grid-template-columns: 1fr;
-        grid-template-areas: none;
+        grid-template-areas: "outer" "balance" "input" "table";
     }
 
     .table {
