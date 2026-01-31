@@ -200,9 +200,6 @@ button:active {
     background-color: red;
 }
 
-.btn-check.btn-green {
-    background-color: green;
-}
 /* FOR TREASURY */
 
 /* FOR TREASURY : EDIT */
@@ -382,6 +379,46 @@ i {
         margin: 20px;
     }
 
+    main.m-treasury {
+        grid-template-columns: 1fr;
+    }
 
+    .m-treasury h2 {
+        display: none;
+    }
 
+    .m-treasury h1 {
+        font-size: 24px;
+    }
+
+    .m-treasury div {
+        grid-template-columns: 1fr;
+        grid-template-areas: none;
+    }
+
+    .table {
+        overflow-x: scroll;
+    }
+
+    .m-treasury #date:invalid::-webkit-datetime-edit {
+        color: transparent;
+    }
+
+    .m-treasury #date:invalid::before{
+        content: "DD/MM/YYYY";
+        color: #808080;
+    }
+    
+    .outer {
+        margin:0;
+    }
+
+    #switch {
+        justify-self: start;
+    }
+
+    td, th {
+        white-space: nowrap;
+        padding: 5px 10px;
+    }
 }

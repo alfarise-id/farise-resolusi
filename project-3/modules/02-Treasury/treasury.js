@@ -46,7 +46,7 @@ function renderTable(modul = 'p_fluk') {
             tdHapus.innerHTML = 
             `<button class='btn-hapus'>Delete</button>
             <button class='btn-edit'>Edit</button>
-            <button class='btn-check'>✔</button>`;
+            <input type="checkbox">`;
             row.appendChild(tdHapus);
             action_button('p_recon');
             tbody.appendChild(row);
@@ -91,9 +91,7 @@ function action_button(modul = 'p_fluk') {
             document.querySelector('#amountEd').value = data[indexEdit].amount;
             document.querySelector('#typeEd').value = data[indexEdit].type;
 
-        } else if (e.target.classList.contains('btn-check')){
-            e.target.style.backgroundColor ='green'; //NEED FIX
-        }
+        } 
     })
 }
 

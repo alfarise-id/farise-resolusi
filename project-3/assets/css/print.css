@@ -1,0 +1,37 @@
+body {
+    color: black;
+    background-color: azure;
+}
+
+aside {
+    display: none;
+    visibility: hidden;
+}
+
+.input {
+    display: none;
+    visibility: hidden;
+}
+
+.container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    "outer"
+    "balance"
+    "table";
+}
+
+#switch {
+    display: none;
+    visibility: 0;
+}
+
+td, th {
+    white-space: nowrap;
+    padding: 5px 10px;
+}
+
+thead tr th:last-child, tbody tr td:last-child {
+    display: none;
+    visibility: 0;
+}
