@@ -96,7 +96,7 @@ function action_button(modul = 'p_fluk') {
 }
 
 const balanceUpdate = (modul = 'p_fluk') => {
-    let data = JSON.parse(localStorage.getItem(modul));
+    let data = JSON.parse(localStorage.getItem(modul)) || [];
 
     let totalReimburse = 0;
     let totalExpense = 0;
