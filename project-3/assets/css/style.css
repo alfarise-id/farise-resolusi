@@ -18,6 +18,15 @@ body {
     background-color: #0d0026;
 }
 
+main h1 {
+    font-size: 24px;
+}
+
+main h2 {
+    font-size: 18px;
+    margin-top: 0;
+}
+
 aside {
     display: grid;
     grid-template-columns: 1fr;
@@ -59,6 +68,89 @@ main {
     grid-template-rows: 1fr auto;
 }
 
+/* FOR FIXED ASSET */
+#m-faset {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: max-content max-content;
+    column-gap: 20px;
+    grid-template-areas: "judul judul" "menu-aset graph";
+    padding: 20px;
+}
+
+#m-faset #menu-aset {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+    height: fit-content;
+}
+
+#menu-aset h2 {
+    margin: 0;
+}
+
+.aset, .form-table {
+    background-color: #3700ff;
+    border-radius: 15px;
+    padding: 20px;
+    align-content: center;
+}
+
+#c_asset {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: "judul_asset add_asset" "list_asset list_asset";
+    align-items: center;
+}
+
+#c_asset ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#c_asset ul li {
+    border: 2px solid #7700ff;
+    border-radius: 15px;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#c_asset ul li:hover {
+    background-color: #190042;
+}
+
+#c_asset #add_asset {
+    padding: 10px 15px;
+    justify-self: end;
+}
+
+#back {
+    width: 20%;
+    justify-self: end;
+}
+
+td, th {
+    white-space: nowrap;
+    padding: 5px 10px;
+}
+
+.table {
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+#c_asset #add_asset {
+    margin-top: 0;
+}
+
+.form .edit .disposal {
+    display: none;
+}
 /* FOR TREASURY */
 .m-treasury {
     grid-template-rows: auto 1fr;
@@ -108,7 +200,7 @@ main {
     padding: 10px;
 }
 
-.m-treasury section {
+.m-treasury section, #m-faset section {
     background-color: #2b00a0;
     border-radius: 15px;
     padding: 20px;
@@ -121,18 +213,18 @@ main {
     height: fit-content;
 }
 
-.m-treasury .input form {
+form {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto;
     align-items: center;
 }
 
-.m-treasury .input label {
+label {
     height: fit-content;
 }
 
-.m-treasury .input input, .input select, .input button, .balance button, button {
+input, .input select, .input button, .balance button, button, #back {
     border-radius: 15px;
     border: #d3d3d3;
     background-color: #150050;
@@ -141,11 +233,11 @@ main {
     color: #d3d3d3;
 }
 
-.input input {
+input {
     margin-bottom: 10px;
 }
 
-.input button {
+.input button, .m-faset-submit, #back, #add_asset {
     margin: 20px 0;
     padding: 0;
     background-color: #4400ff;
@@ -181,9 +273,14 @@ button {
     transition: all 0.3s;
 }
 
-button:active {
+button:active, .aset:active, .form-table:active, #back:active, #c_asset ul li:active {
     transform: scale(0.95);
     background-color: #270081;
+}
+
+button:hover, .aset:hover, .form-table:hover {
+    cursor: pointer;
+    transform: scale(0.99);
 }
 
 .btn-hapus,.btn-edit, .btn-check, .balance .btn-editBalance {
@@ -387,18 +484,12 @@ i {
         display: none;
     }
 
-    .m-treasury h1 {
-        font-size: 24px;
-    }
 
     .m-treasury div {
         grid-template-columns: 1fr;
         grid-template-areas: "outer" "balance" "input" "table";
     }
 
-    .table {
-        overflow-x: scroll;
-    }
 
     .m-treasury #date:invalid::-webkit-datetime-edit {
         color: transparent;
@@ -417,8 +508,5 @@ i {
         justify-self: start;
     }
 
-    td, th {
-        white-space: nowrap;
-        padding: 5px 10px;
-    }
+
 }

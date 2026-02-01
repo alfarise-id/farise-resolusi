@@ -29,22 +29,35 @@
             </ul>
         </nav>
     </aside>
-    <main id="m-faset">
-        <h1 style="grid-area: judul;">Fixed Asset</h1>
-        <section id="menu-aset" style="grid-area: menu-aset;">
-            <div class="aset">
-                <i class="fa-solid fa-coins"></i>
-                <h2>Detail Asset</h2>
-            </div>
-            <div class="form-table">
-                <i class="fa-solid fa-table"></i>
-                <h2>Form Table</h2>
-            </div>
+    <main id="m-faset" class="insert" style="grid-template-areas: 'judul back' 'c_asset table';">
+        <h1 style="grid-area: judul;">Fixed Asset (Detail Asset)</h1>
+        <button style="grid-area: back;" id="back">Back</button>
+        <section id="c_asset" style="grid-area: c_asset;">
+            <h2 style="grid-area: judul_asset;">Current Asset</h2>
+            <button id="add_asset" style="grid-area: add_asset;">Add Asset</button>
+            <ul id="list_asset" style="grid-area: list_asset;">
+                <li>Halo</li>
+            </ul>
         </section>
-        <section id="sec_graph" style="grid-area: graph;">
-            <h2>Graphic</h2>
-            <canvas id="graphic"></canvas>
-        </section>
+            <section class="table" style="grid-area: table;">
+                <h3>Table</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Purchase Date</th>
+                            <th>Desc</th>
+                            <th>Cost</th>
+                            <th>Depreciation/Month</th>
+                            <th>Accumulated Depreciation</th>
+                            <th>Book Value (Current)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
     </main>
     <script src="../../assets/js/main.js"></script>
     <script src="asset-logic.js"></script>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <aside>
+        <header>
+            <h1>Farise</h1>    
+        </header>
+
+        <button class="burger">&#8801</button>
+
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../01-Fixed-Asset/index.html" class="active">Fixed Asset</a></li>
+                <li><a href="../02-Treasury/index.html">Treasury</a></li>
+                <li><a href="../03-Inventory/index.html">Inventory</a></li>
+                <li><a href="../04-Receivables/index.html">Receivables</a></li>
+                <li><a href="../05-Capital/index.html">Capital</a></li>
+                <li><a href="reports/">Reports</a></li>
+                <li><a href="../../about.html">About</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main id="m-faset" class="insert" style="grid-template-areas: 'judul back' 'insert table';">
+        <h1 style="grid-area: judul;">Fixed Asset(Insert & Table)</h1>
+        <button style="grid-area: back;" id="back">Back</button>
+        <section id="form" style="grid-area: insert;">
+            <h2>Add Asset</h2>
+            <form>
+                <label for="date">Purchase Date</label>
+                <input type="datetime-local" id="date" required>
+
+                <label for="desc">Description</label>
+                <input type="text" id="desc" placeholder="Description" required>
+
+                <label for="cost">Cost</label>
+                <input type="number" id="cost" placeholder="Rp. 0,-" required>
+
+                <label for="salvage">Salvage Value</label>
+                <input type="number" id="salvage" placeholder="Rp. 0,-" required>
+
+                <label for="lifetime">Useful Life</label>
+                <input type="number" id="lifetime" placeholder="exp: 48 (month)" required>
+
+                <input type="submit" class="m-faset-submit">
+            </form>
+        </section>
+        <section id="form edit" style="grid-area: insert;">
+            <h2>Add Asset</h2>
+            <form>
+                <label for="date">Purchase Date</label>
+                <input type="datetime-local" id="date" required>
+
+                <label for="desc">Description</label>
+                <input type="text" id="desc" placeholder="Description" required>
+
+                <label for="cost">Cost</label>
+                <input type="number" id="cost" placeholder="Rp. 0,-" required>
+
+                <label for="salvage">Salvage Value</label>
+                <input type="number" id="salvage" placeholder="Rp. 0,-" required>
+
+                <label for="lifetime">Useful Life</label>
+                <input type="number" id="lifetime" placeholder="exp: 48 (month)" required>
+
+                <input type="submit" class="m-faset-submit">
+            </form>
+        </section>
+        <section id="form disposal" style="grid-area: insert;">
+            <h2>Add Asset</h2>
+            <form>
+                <label for="date">Purchase Date</label>
+                <input type="datetime-local" id="date" required>
+
+                <label for="desc">Description</label>
+                <input type="text" id="desc" placeholder="Description" required>
+
+                <label for="cost">Cost</label>
+                <input type="number" id="cost" placeholder="Rp. 0,-" required>
+
+                <label for="salvage">Salvage Value</label>
+                <input type="number" id="salvage" placeholder="Rp. 0,-" required>
+
+                <label for="lifetime">Useful Life</label>
+                <input type="number" id="lifetime" placeholder="exp: 48 (month)" required>
+
+                <input type="submit" class="m-faset-submit">
+            </form>
+        </section>
+        <section class="table" style="grid-area: table;">
+            <h3>Table</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Purchase Date</th>
+                        <th>Desc</th>
+                        <th>Cost</th>
+                        <th>Salvage Value</th>
+                        <th>Useful Life</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="../../assets/js/main.js"></script>
+    <script src="asset-logic.js"></script>
+    <script src="graph.js"></script>
+</body>
+</html>
