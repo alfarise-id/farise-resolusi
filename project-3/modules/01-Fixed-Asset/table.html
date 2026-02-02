@@ -34,9 +34,9 @@
         <button style="grid-area: back;" id="back">Back</button>
         <section id="form" style="grid-area: insert;">
             <h2>Add Asset</h2>
-            <form>
+            <form id="form_insert">
                 <label for="date">Purchase Date</label>
-                <input type="datetime-local" id="date" required>
+                <input type="date" id="date" required>
 
                 <label for="desc">Description</label>
                 <input type="text" id="desc" placeholder="Description" required>
@@ -53,44 +53,35 @@
                 <input type="submit" class="m-faset-submit">
             </form>
         </section>
-        <section id="form edit" style="grid-area: insert;">
-            <h2>Add Asset</h2>
-            <form>
-                <label for="date">Purchase Date</label>
-                <input type="datetime-local" id="date" required>
+        <section id="sec_edit" style="grid-area: insert; display: none;">
+            <h2>Edit Asset</h2>
+            <form id="form_edit">
+                <label for="dateD">Purchase Date</label>
+                <input type="date" id="dateD" required>
 
-                <label for="desc">Description</label>
-                <input type="text" id="desc" placeholder="Description" required>
+                <label for="descD">Description</label>
+                <input type="text" id="descD" placeholder="Description" required>
 
-                <label for="cost">Cost</label>
-                <input type="number" id="cost" placeholder="Rp. 0,-" required>
+                <label for="costD">Cost</label>
+                <input type="number" id="costD" placeholder="Rp. 0,-" required>
 
-                <label for="salvage">Salvage Value</label>
-                <input type="number" id="salvage" placeholder="Rp. 0,-" required>
+                <label for="salvageD">Salvage Value</label>
+                <input type="number" id="salvageD" placeholder="Rp. 0,-" required>
 
-                <label for="lifetime">Useful Life</label>
-                <input type="number" id="lifetime" placeholder="exp: 48 (month)" required>
+                <label for="lifetimeD">Useful Life</label>
+                <input type="number" id="lifetimeD" placeholder="exp: 48 (month)" required>
 
                 <input type="submit" class="m-faset-submit">
             </form>
         </section>
-        <section id="form disposal" style="grid-area: insert;">
-            <h2>Add Asset</h2>
-            <form>
-                <label for="date">Purchase Date</label>
-                <input type="datetime-local" id="date" required>
+        <section id="sec_disposal" style="grid-area: insert; display: none;">
+            <h2>Disposal Asset</h2>
+            <form id="form_disposal">
+                <label for="dispo_date">Disposal Date</label>
+                <input type="date" id="dispo_date" required>
 
-                <label for="desc">Description</label>
-                <input type="text" id="desc" placeholder="Description" required>
-
-                <label for="cost">Cost</label>
-                <input type="number" id="cost" placeholder="Rp. 0,-" required>
-
-                <label for="salvage">Salvage Value</label>
-                <input type="number" id="salvage" placeholder="Rp. 0,-" required>
-
-                <label for="lifetime">Useful Life</label>
-                <input type="number" id="lifetime" placeholder="exp: 48 (month)" required>
+                <label for="sale_price">Sale Price</label>
+                <input type="number" id="sale_price" placeholder="Rp. 0,-" required>
 
                 <input type="submit" class="m-faset-submit">
             </form>
@@ -106,6 +97,7 @@
                         <th>Cost</th>
                         <th>Salvage Value</th>
                         <th>Useful Life</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>

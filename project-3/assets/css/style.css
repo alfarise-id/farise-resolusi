@@ -99,11 +99,22 @@ main {
     align-content: center;
 }
 
+#m-faset #sec_edit {
+    background-color: #6200ff;
+    display: none;
+}
+
+#m-faset #sec_disposal {
+    background-color: #6200ffa8;
+}
+
 #c_asset {
     display: grid;
     grid-template-columns: auto auto;
+    grid-template-rows: max-content max-content;
     grid-template-areas: "judul_asset add_asset" "list_asset list_asset";
     align-items: center;
+    height: fit-content;
 }
 
 #c_asset ul {
@@ -118,6 +129,7 @@ main {
     padding: 0 20px;
     cursor: pointer;
     transition: all 0.2s;
+    margin-bottom: 10px;
 }
 
 #c_asset ul li:hover {
@@ -137,6 +149,10 @@ main {
 td, th {
     white-space: nowrap;
     padding: 5px 10px;
+}
+
+#m-faset table td:last-child {
+    text-align: start;
 }
 
 .table {
