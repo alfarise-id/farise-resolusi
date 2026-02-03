@@ -104,9 +104,6 @@ main {
     display: none;
 }
 
-#m-faset #sec_disposal {
-    background-color: #6200ffa8;
-}
 
 #c_asset {
     display: grid;
@@ -551,8 +548,8 @@ i {
         margin-top: 10px;
     }
 
-    #sec_graph div {
-        width: 70vw;
+    #sec_graph div canvas {
+        width: 100%;
     }
 
     #table_fix #m-faset{
