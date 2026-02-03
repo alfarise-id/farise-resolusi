@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Dashboard</title>
+    <title>Details - Fixed Asset</title>
 </head>
-<body>
+<body id="detail">
     <aside>
         <header>
             <h1>Farise</h1>    
@@ -29,7 +29,7 @@
             </ul>
         </nav>
     </aside>
-    <main id="m-faset" class="insert" style="grid-template-areas: 'judul back' 'c_asset table';">
+    <main id="m-faset" class="insert">
         <h1 style="grid-area: judul;">Fixed Asset (Detail Asset)</h1>
         <button style="grid-area: back;" id="back">Back</button>
         <section id="c_asset" style="grid-area: c_asset;">
@@ -58,6 +58,5 @@
     </main>
     <script src="../../assets/js/main.js"></script>
     <script src="asset-logic.js"></script>
-    <script src="graph.js"></script>
 </body>
 </html>

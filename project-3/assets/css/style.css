@@ -417,7 +417,15 @@ i {
     height: fit-content;
 }
 
-@media (max-width: 425px) {
+#table_fix #m-faset {
+    grid-template-areas: 'judul back' 'insert table';
+}
+
+ #detail #m-faset {
+    grid-template-areas: 'judul back' 'c_asset table';
+ }
+
+@media (max-width: 768px) {
     body {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
@@ -525,4 +533,39 @@ i {
     }
 
 
+}
+
+@media (max-width: 425px) {
+    #m-faset {
+        grid-template-columns: 1fr;
+        grid-template-areas: "judul" "menu-aset" "graph";
+        gap: 10px;
+    }
+
+    #m-faset #menu-aset {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+    
+    #m-faset #sec_graph {
+        margin-top: 10px;
+    }
+
+    #sec_graph div {
+        width: 70vw;
+    }
+
+    #table_fix #m-faset{
+        grid-template-areas: 'judul' 'back' 'insert' 'table';
+    }
+    
+    #detail #m-faset {
+       grid-template-areas: 'judul' 'back' 'c_asset' 'table';
+       grid-template-columns: 1fr;
+    }
+
+    #back {
+        width: 100%;
+        margin-top: 0;
+    }
 }

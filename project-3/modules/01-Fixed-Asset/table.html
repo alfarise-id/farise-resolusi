@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Dashboard</title>
+    <title>Table - Fixed Asset</title>
 </head>
-<body>
+<body id="table_fix">
     <aside>
         <header>
             <h1>Farise</h1>    
@@ -29,7 +29,7 @@
             </ul>
         </nav>
     </aside>
-    <main id="m-faset" class="insert" style="grid-template-areas: 'judul back' 'insert table';">
+    <main id="m-faset" class="insert" >
         <h1 style="grid-area: judul;">Fixed Asset(Insert & Table)</h1>
         <button style="grid-area: back;" id="back">Back</button>
         <section id="form" style="grid-area: insert;">
@@ -74,18 +74,6 @@
                 <input type="submit" class="m-faset-submit">
             </form>
         </section>
-        <section id="sec_disposal" style="grid-area: insert; display: none;">
-            <h2>Disposal Asset</h2>
-            <form id="form_disposal">
-                <label for="dispo_date">Disposal Date</label>
-                <input type="date" id="dispo_date" required>
-
-                <label for="sale_price">Sale Price</label>
-                <input type="number" id="sale_price" placeholder="Rp. 0,-" required>
-
-                <input type="submit" class="m-faset-submit">
-            </form>
-        </section>
         <section class="table" style="grid-area: table;">
             <h3>Table</h3>
             <table>
@@ -97,7 +85,6 @@
                         <th>Cost</th>
                         <th>Salvage Value</th>
                         <th>Useful Life</th>
-                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -108,6 +95,5 @@
     </main>
     <script src="../../assets/js/main.js"></script>
     <script src="asset-logic.js"></script>
-    <script src="graph.js"></script>
 </body>
 </html>

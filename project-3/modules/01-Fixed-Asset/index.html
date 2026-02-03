@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Dashboard</title>
+    <title>Fixed Asset</title>
 </head>
 <body>
     <aside>
@@ -43,11 +43,14 @@
         </section>
         <section id="sec_graph" style="grid-area: graph;">
             <h2>Graphic</h2>
-            <canvas id="graphic"></canvas>
+            <div style="width: 95%; height: 50vh;">
+                <canvas id="graphic"></canvas>
+            </div>
         </section>
     </main>
+    <script src="graph.js"></script>
     <script src="../../assets/js/main.js"></script>
     <script src="asset-logic.js"></script>
-    <script src="graph.js"></script>
+
 </body>
 </html>

@@ -63,8 +63,14 @@ if (assetLink_detail) {
                 let Month = Number(data[index].lifetime);
                 let acum_depre = 0;
                 let x = 1
+                let date = new Date(data[index].tgl); 
+
                 while (x <= Month) {
-                    let date = data[index].tgl;
+                    let tahun = date.getFullYear();
+                    let bulan = String(date.getMonth()+1).padStart(2, '0');
+                    let hari = String(date.getDate()).padStart(2, '0');
+                    let tgl_baru = `${tahun}-${bulan}-${hari}`;
+
                     let desc = data[index].desc;
                     let cost = data[index].cost;
                     let depresiasi = (Number(data[index].cost) - Number(data[index].salvage))/Month;
@@ -74,7 +80,7 @@ if (assetLink_detail) {
                     const tr = document.createElement("tr");
 
                     tr.append(
-                        createTD(date),
+                        createTD(tgl_baru),
                         createTD(desc),
                         createTD(rupiah(cost)),
                         createTD(rupiah(depresiasi)),
@@ -83,6 +89,7 @@ if (assetLink_detail) {
                     )
 
                     tbody.append(tr);
+                    date.setMonth(date.getMonth()+1) ;
                     x++;
                 }
             })
@@ -94,9 +101,7 @@ if (assetLink_detail) {
 // for table & insert
 const form_insert = document.getElementById('form_insert');
 const form_edit = document.getElementById('form_edit');
-const form_disposal = document.getElementById('form_disposal');
 const sec_edit = document.querySelector('#sec_edit');
-const sec_disposal = document.querySelector('#sec_disposal');
 const sec_insert = document.querySelector('#form');
 const pdate_insert = document.querySelector('#date');
 const desc_insert = document.querySelector('#desc');
@@ -148,14 +153,10 @@ if (form_insert) {
                 createTD(rupiah(item.cost)),
                 createTD(rupiah(item.salvage)),
                 createTD(item.lifetime + " Month")
-            );
-            const td_button_dispo = document.createElement("td");
-            td_button_dispo.innerHTML = "<span class='status'>Active<span>";
-            
-            tr.appendChild(td_button_dispo);
+            );            
 
             const td_button_d = document.createElement("td");
-            td_button_d.innerHTML = "<button id='del' class='del'>Delete</button><button id='edit' class='edit'>Edit</button><button id='Disposal' class='disposal'>Disposal</button>";
+            td_button_d.innerHTML = "<button id='del' class='del'>Delete</button><button id='edit' class='edit'>Edit</button>";
             
             tr.appendChild(td_button_d);
             tbody.appendChild(tr);
@@ -185,7 +186,6 @@ if (form_insert) {
 
                 sec_edit.style.display = "grid";
                 sec_insert.style.display = "none";
-                sec_disposal.style.display = "none";
 
                 let data = JSON.parse(localStorage.getItem("f_asset")) || [];
                 let data_edit = data[index];
@@ -195,15 +195,7 @@ if (form_insert) {
                 document.querySelector('#costD').value = data_edit.cost;
                 document.querySelector('#salvageD').value = data_edit.salvage;
                 document.querySelector('#lifetimeD').value = data_edit.lifetime; 
-            } else if (e.target.classList.contains('disposal')) {
-                const row = e.target.closest('tr');
-                let index = row.getAttribute("index");
-                sec_edit.setAttribute("index", index);
-
-                sec_disposal.style.display = "grid";
-                sec_insert.style.display = "none";
-                sec_edit.style.display = "none";
-            }
+            } 
         })
     }
 
@@ -227,7 +219,7 @@ if (form_insert) {
 
         renderTable();
         sec_edit.style.display = "none";
-        form_insert.style.display = "grid";
+        sec_insert.style.display = "grid";
         form_edit.reset();
         alert("Edit Succes");
     });
