@@ -29,27 +29,27 @@
         </nav>
     </aside>
     <main id="inventory">
-        <h1>Inventory (List Product)</h1>
+        <h1>Inventory (Detail Product)</h1>
         <section id="input">
-            <h2>Add New Product</h2>
-            <form class="new_product">
-                <label for="date">Date</label>
-                <input type="date" id="date" required>
+            <h2>Restock</h2>
+            <form class="restock">
+                <label for="dateRe">Date</label>
+                <input type="date" id="dateRe" required>
 
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Exp: Iphone XR" required>
+                <label for="typeRe">Type</label>
+                <select id="typeRe">
+                    <option value="IN">IN</option>
+                    <option value="OUT">OUT</option>
+                </select>
 
-                <label for="unit">Unit</label>
-                <input type="text" id="unit" placeholder="Exp: Pcs" required>
+                <label for="qtyRe">Qty</label>
+                <input type="number" id="qtyRe" placeholder="Exp: 20" required>
 
-                <label for="min_stock">Min Stock</label>
-                <input type="number" id="min_stock" placeholder="Exp:5" required>
+                <label for="priceRe">Price</label>
+                <input type="number" id="priceRe" placeholder="Exp:Rp. 3.000.000" required>    
 
-                <label for="qty">Qty</label>
-                <input type="number" id="qty" placeholder="Exp: 20" required>
-
-                <label for="price">Price</label>
-                <input type="number" id="price" placeholder="Exp:Rp. 3.000.000" required>
+                <label for="notesRe">Notes</label>
+                <input type="text" id="notesRe" placeholder="Exp: Bought Form Store A (Opsional)">
 
                 <input type="submit" class="submit">
             </form>
@@ -59,11 +59,13 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Unit</th>
-                        <th>Min-Stock</th>
-                        <th>Current_Qty</th>
-                        <th>Avg_price</th>
+                        <th>Id_Product</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Balance Qty</th>
+                        <th>Notes</th>
                         <th>Action</th>
                     </tr>
                 </thead>

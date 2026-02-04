@@ -68,6 +68,47 @@ main {
     grid-template-rows: 1fr auto;
 }
 
+/* FOR INVENTORY */
+#inventory {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "judul judul" "input table";
+    padding: 20px;
+    column-gap: 20px;
+
+}
+
+#inventory h1 {
+    grid-area: judul;
+}
+
+#input {
+    grid-area: input;
+    background-color: #2e00ad;
+    padding: 20px;
+    border-radius: 15px;
+    height: fit-content;
+}
+#input #typeRe {
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #150050;
+    color: whitesmoke;
+}
+
+#input .submit{
+    margin-top: 20px;
+    background-color: #7d19ff;
+}
+
+#table {
+    grid-area: table;
+}
+/* FOR INVENTORY */
+
 /* FOR FIXED ASSET */
 #m-faset {
     display: grid;
