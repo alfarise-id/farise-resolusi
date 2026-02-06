@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Dashboard</title>
+    <title>Detail | Inventory</title>
 </head>
 <body>
     <aside>
@@ -28,11 +28,11 @@
             </ul>
         </nav>
     </aside>
-    <main id="inventory">
+    <main id="inventoryRe">
         <h1>Inventory (Detail Product)</h1>
-        <section id="input">
+        <section id="inputRe">
             <h2>Restock</h2>
-            <form class="restock">
+            <form id="formRe">
                 <label for="dateRe">Date</label>
                 <input type="date" id="dateRe" required>
 
@@ -54,7 +54,7 @@
                 <input type="submit" class="submit">
             </form>
         </section>
-        <section id="table">
+        <section id="tableRe">
             <table>
                 <thead>
                     <tr>
@@ -69,7 +69,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbodyRe">
 
                 </tbody>
             </table>

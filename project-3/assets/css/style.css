@@ -69,7 +69,7 @@ main {
 }
 
 /* FOR INVENTORY */
-#inventory {
+#inventoryLp, #inventoryRe {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
@@ -79,18 +79,19 @@ main {
 
 }
 
-#inventory h1 {
+#inventoryLp h1, #inventoryRe h1 {
     grid-area: judul;
 }
 
-#input {
+#inputLp, #inputRe {
     grid-area: input;
     background-color: #2e00ad;
     padding: 20px;
     border-radius: 15px;
     height: fit-content;
 }
-#input #typeRe {
+
+#inputRe #typeRe {
     margin-bottom: 10px;
     border: none;
     border-radius: 15px;
@@ -99,12 +100,12 @@ main {
     color: whitesmoke;
 }
 
-#input .submit{
+#inputRe .submit, #inputLp .submit{
     margin-top: 20px;
     background-color: #7d19ff;
 }
 
-#table {
+#tableLp, #tableRe {
     grid-area: table;
 }
 /* FOR INVENTORY */

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Dashboard</title>
+    <title>Inventory</title>
 </head>
 <body>
     <aside>
@@ -28,33 +28,33 @@
             </ul>
         </nav>
     </aside>
-    <main id="inventory">
+    <main id="inventoryLp">
         <h1>Inventory (List Product)</h1>
-        <section id="input">
+        <section id="inputLp">
             <h2>Add New Product</h2>
-            <form class="new_product">
-                <label for="date">Date</label>
-                <input type="date" id="date" required>
+            <form id="formLp">
+                <label for="dateLp">Date</label>
+                <input type="date" id="dateLp" required>
 
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Exp: Iphone XR" required>
+                <label for="nameLp">Name</label>
+                <input type="text" id="nameLp" placeholder="Exp: Iphone XR" required>
 
-                <label for="unit">Unit</label>
-                <input type="text" id="unit" placeholder="Exp: Pcs" required>
+                <label for="unitLp">Unit</label>
+                <input type="text" id="unitLp" placeholder="Exp: Pcs" required>
 
-                <label for="min_stock">Min Stock</label>
-                <input type="number" id="min_stock" placeholder="Exp:5" required>
+                <label for="min_stockLp">Min Stock</label>
+                <input type="number" id="min_stockLp" placeholder="Exp:5" required>
 
-                <label for="qty">Qty</label>
-                <input type="number" id="qty" placeholder="Exp: 20" required>
+                <label for="qtyLp">Qty</label>
+                <input type="number" id="qtyLp" placeholder="Exp: 20" required>
 
-                <label for="price">Price</label>
-                <input type="number" id="price" placeholder="Exp:Rp. 3.000.000" required>
+                <label for="priceLp">Price</label>
+                <input type="number" id="priceLp" placeholder="Exp:Rp. 3.000.000" required>
 
                 <input type="submit" class="submit">
             </form>
         </section>
-        <section id="table" class="table_lp">
+        <section id="tableLp">
             <table>
                 <thead>
                     <tr>
@@ -67,7 +67,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbodyLp">
 
                 </tbody>
             </table>
