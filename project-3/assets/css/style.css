@@ -79,6 +79,10 @@ main {
 
 }
 
+#inventoryRe {
+    grid-template-areas: "judul back" "input table";
+}
+
 #inventoryLp h1, #inventoryRe h1 {
     grid-area: judul;
 }
@@ -107,6 +111,14 @@ main {
 
 #tableLp, #tableRe {
     grid-area: table;
+    overflow-x: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.205);
+}
+
+#inventoryRe #back {
+    grid-area: back;
+    height: fit-content;
 }
 /* FOR INVENTORY */
 
