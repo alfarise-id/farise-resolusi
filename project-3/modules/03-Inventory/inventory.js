@@ -164,7 +164,23 @@ const action_button = () => {
                 case e.target.classList.contains('deleteRe'):
                     const id_barisRe = Number(e.target.dataset.id);
                     const storageRe = JSON.parse(localStorage.getItem(SK_RE)) || [];
+                    const storageLp = JSON.parse(localStorage.getItem(SK_LP)) || [];
                     const filter_stgRe = storageRe.filter(item => item.id !== id_barisRe);
+                    const index_delRe = storageRe.findIndex(item => item.id === id_barisRe);
+                    const index_delLp = storageLp.findIndex(item => item.id === storageRe[index_delRe].id_product);
+
+                    // Fitur Jika Hapus Mempengaruhi Qty
+                    /* let qty_del = 0;
+                    filter_stgRe.forEach(item => {
+                        if (storageRe[index_delRe].id_product === item.id_product) {
+                            qty_del += Number(item.qty)
+                        } else {
+                            qty_del += 0;
+                        }
+                    })
+
+                    storageLp[index_delLp].qty = qty_del;
+                    simpanDataLp(storageLp); */ 
 
                     simpanDataRe(filter_stgRe);
                     renderTable();
@@ -174,8 +190,10 @@ const action_button = () => {
                     isEditing = true;
                     const storageRe_edit = JSON.parse(localStorage.getItem(SK_RE)) || [];
 
-                    const filter_edit_stgRe = storageRe_edit.filter(item => item.id = id_editRe);
-
+                    const filter_edit_stgRe = storageRe_edit.find(item => item.id === id_editRe);
+                    const find_edit_stgRe = storageRe_edit.findIndex(item => item.id === id_editRe);
+                    detail_id = id_editRe;
+                    editIndex = find_edit_stgRe;
                     h2_inputRe.textContent = "Edit Detail Product";
                     input_dateRe.value = filter_edit_stgRe.date;
                     input_typeRe.value = filter_edit_stgRe.type;
@@ -300,7 +318,70 @@ if (formLp) {
         e.preventDefault();
 
         if (isEditing) {
+            const storageRe = JSON.parse(localStorage.getItem(SK_RE)) || [];
+            const storageLp = JSON.parse(localStorage.getItem(SK_LP)) || [];
+            const id_productReLp = storageRe[editIndex].id_product;
+
+            const edit_dateRe = input_dateRe.value;
+            const edit_typeRe = input_typeRe.value;
+            const edit_qtyRe = input_qtyRe.value;
+            const edit_priceRe = input_priceRe.value;
+            const edit_notesRe = input_notesRe.value;
+
+            const data_blc_bfr = storageRe.filter(item => {
+                return Number(item.id_product) === Number(id_productReLp) && Number(item.id) !== Number(detail_id)})
+        
+            const edit_qtyNew = Number(edit_qtyRe);
+            let edit_qtyLast = 0;
+            data_blc_bfr.forEach(item => {
+                if(item.type === 'IN') {
+                    edit_qtyLast += Number(item.qty);
+                } else {
+                    edit_qtyLast -= Number(item.qty);
+                }
+            }) 
+            let blc_qty = 0;
+            if (edit_typeRe === 'IN') {
+                blc_qty = edit_qtyLast + edit_qtyNew;
+            } else {
+                blc_qty = edit_qtyLast - edit_qtyNew;
+            } 
+            const dataRe = {
+                id: detail_id,
+                id_product: id_productReLp,
+                date: edit_dateRe,
+                type: edit_typeRe,
+                qty: edit_qtyRe,
+                price: edit_priceRe,
+                balance_qty: blc_qty,
+                notes: edit_notesRe
+            }
+
+            const index_editStrLp = storageLp.findIndex(item => item.id === id_productReLp);
+            storageLp[index_editStrLp].qty = blc_qty;
+            storageRe[editIndex] = dataRe;
             
+            let ctn_priceEdit = 0;
+            let i = 0;
+            const filter_str_avgprc = storageRe.filter(item => item.id_product === id_productReLp);
+            filter_str_avgprc.forEach(item => {
+                if (item.type === 'IN') {
+                    ctn_priceEdit += Number(item.price)
+                    i++
+                } else {
+                    ctn_priceEdit += 0;
+                }
+            });
+
+            const avg_priceEdit = ctn_priceEdit/i
+            storageLp[index_editStrLp].price = avg_priceEdit;
+            isEditing = false;
+            editIndex = null;
+            detail_id = null;
+            simpanDataLp(storageLp);
+            simpanDataRe(storageRe);
+            renderTable();
+            formRe.reset();
         } else {
             const storageRe = JSON.parse(localStorage.getItem(SK_RE)) || [];
             const storageLp = JSON.parse(localStorage.getItem(SK_LP)) || [];

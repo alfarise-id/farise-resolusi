@@ -619,4 +619,25 @@ i {
         width: 100%;
         margin-top: 0;
     }
+
+    #inventoryLp, #inventoryRe {
+        grid-template-areas: "judul" "judul" "input" "table";
+        gap: 0;
+    }
+
+    #inventoryRe {
+        grid-template-areas: "judul" "back" "input" "table";
+    }
+
+    #tableRe, #tableLp {
+        margin-top: 20px;
+    }
+
+    #inventoryLp h1, #inventoryRe h1 {
+        font-size: 18px;
+    }
+
+    #inventoryLp h2, #inventoryRe h2 {
+        font-size: 16px;
+    }
 }
