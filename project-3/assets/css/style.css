@@ -68,6 +68,54 @@ main {
     grid-template-rows: 1fr auto;
 }
 
+/* FOR RECEIVABLES */
+#main_receivable {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: min-content min-content;
+    grid-template-areas: "judul back" "input table";
+    column-gap: 20px;
+    padding: 20px;
+    padding-top: 0;
+}
+
+#main_receivable h1{
+    grid-area: judul;
+}
+
+#main_receivable #back{
+    grid-area: back;
+}
+
+#input_rc, #input_dt {
+    grid-area: input;
+    background-color: #270081;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+#submit {
+    background-color: #3700ff;
+    margin: 0;
+    margin-top: 10px;
+}
+
+#table_rc, #table_dt {
+    grid-area: table;
+    overflow-x: scroll;
+}
+
+select {
+    margin:10px 0;
+    margin-top: 5px;
+    padding: 5px;
+    color: whitesmoke;
+    border: none;
+    border-radius: 15px;
+    background-color: #17004d;
+}
+/* FOR RECEIVABLES */
+
 /* FOR INVENTORY */
 #inventoryLp, #inventoryRe {
     display: grid;

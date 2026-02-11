@@ -30,45 +30,41 @@
     </aside>
     <main id="main_receivable">
         <h1>Receivables</h1>
-        <section id="input_rc">
-            <h2>Add Receivables</h2>
-            <form id="form_rc">
-                <label for="desc_rc">Description</label>
-                <input type="text" id="desc_rc" placeholder="Description" required>
+        <button id="back">Back</button>
+        <section id="input_dt">
+            <h2>Form Input</h2>
+            <form id="form_dt">
+                <label for="date_dt">Date</label>
+                <input type="date" id="date_dt" required>
 
-                <label for="type_rc">Type</label>
-                <select id="type_rc">
-                    <option value="AR">Account Receivables</option>
-                    <option value="NR">Notes Receivables</option>
-                </select>
+                <label for="desc_dt">Description</label>
+                <input type="text" id="desc_dt" placeholder="Description" required>
 
-                <label for="amount_rc">Amount</label>
-                <input type="number" id="amount_rc" placeholder="Rp,-" required>
+                <input value="PAY" id="type" hidden>
 
-                <label for="interest_rc">Interest</label>
-                <input type="number" id="interest_rc" placeholder="1(%)" required>
+                <label for="amount_dt">Amount</label>
+                <input type="number" id="amount_dt" placeholder="Rp.-," required>
 
-                <label for="term_rc">Credit Term</label>
-                <input type="number" id="term_rc" placeholder="1(Month)" required>
+                <label for="interest_dt" hidden>Interest</label>
+                <input type="number" id="interest_dt" placeholder="1(%)" required hidden>
 
                 <input type="submit" id="submit">
             </form>
         </section>
-        <section id="table_rc">
+        <section id="table_dt">
             <table>
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Id Receivables</th>
+                        <th>Date</th>
                         <th>Description</th>
-                        <th>Type</th>
+                        <th>PAY/CREDIT</th>
                         <th>Amount</th>
-                        <th>Interest</th>
-                        <th>Credit Term</th>
-                        <th>Status</th>
-                        <th>Action</th>                        
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="tbody_rc">
+                <tbody id="tbody_dt">
                 </tbody>
             </table>
         </section>
