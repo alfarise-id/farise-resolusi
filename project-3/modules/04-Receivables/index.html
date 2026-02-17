@@ -33,22 +33,25 @@
         <section id="input_rc">
             <h2>Add Receivables</h2>
             <form id="form_rc">
-                <label for="desc_rc">Description</label>
+                <label for="date_rc" id="date_rcL">Date</label>
+                <input type="date" id="date_rc" required>
+
+                <label for="desc_rc" id="desc_rcL">Description</label>
                 <input type="text" id="desc_rc" placeholder="Description" required>
 
-                <label for="type_rc">Type</label>
+                <label for="type_rc" id="type_rcL">Type</label>
                 <select id="type_rc">
                     <option value="AR">Account Receivables</option>
                     <option value="NR">Notes Receivables</option>
                 </select>
 
-                <label for="amount_rc">Amount</label>
+                <label for="amount_rc" id="amount_rcL">Amount</label>
                 <input type="number" id="amount_rc" placeholder="Rp,-" required>
 
-                <label for="interest_rc">Interest</label>
+                <label for="interest_rc" id="interest_rcL">Interest</label>
                 <input type="number" id="interest_rc" placeholder="1(%)" required>
 
-                <label for="term_rc">Credit Term</label>
+                <label for="term_rc" id="term_rcL">Credit Term</label>
                 <input type="number" id="term_rc" placeholder="1(Month)" required>
 
                 <input type="submit" id="submit">
