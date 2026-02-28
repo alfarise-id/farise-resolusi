@@ -696,4 +696,14 @@ i {
     #inventoryLp h2, #inventoryRe h2 {
         font-size: 16px;
     }
+
+    #main_receivable {
+        grid-template-columns: 1fr;
+        grid-template-rows: min-content min-content min-content min-content;
+        grid-template-areas: "judul" "back" "input" "table";
+    }
+
+    #table_rc, #table_dt {
+        margin-top: 20px;
+    }
 }
