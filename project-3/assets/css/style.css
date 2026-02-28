@@ -114,6 +114,14 @@ select {
     border-radius: 15px;
     background-color: #17004d;
 }
+
+#table_dt td:last-child {
+    text-align: center;
+}
+
+.deletedrc {
+    margin: 0;
+}
 /* FOR RECEIVABLES */
 
 /* FOR INVENTORY */
